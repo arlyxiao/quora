@@ -10,10 +10,13 @@ class AnswersController < ApplicationController
   
   # 投赞成票, ajax返回
   def agree
+    answer = Answer.find(params[:format])
+	  current_user.agree(answer)
   end
   
   # 投反对票, ajax返回
   def disagree
+    current_user.disagree(params[:answer])
   end
 
 end

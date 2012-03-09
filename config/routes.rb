@@ -12,6 +12,7 @@ Quora::Application.routes.draw do
       get :disagree
     end
   end
+
   
   resources :questions, :answers
 
