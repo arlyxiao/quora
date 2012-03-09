@@ -1,11 +1,6 @@
 Quora::Application.routes.draw do
-  resources :short_messages do
-    collection do
-      get 'exchange'
-    end
-  end
-  
-  resources :short_messages
+
+  resources :questions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
