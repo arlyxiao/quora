@@ -39,6 +39,5 @@ class User < ActiveRecord::Base
   
   # ----------- 以下是方法扩充
   include OnlineRecord::UserMethods
-  include ShortMessage::UserMethods
-  include ShortMessageReading::UserMethods
+  include Question::UserMethods
 end

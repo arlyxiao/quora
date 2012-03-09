@@ -1,0 +1,27 @@
+-htitle '问题'
+
+
+.page-go-back
+  =link_to '返回问题列表', '/questions'
+  
+.page-new-vote
+  = flash.now[:notice]
+
+.page-vote-show
+  .title= @question.title
+  %p= @question.content
+  
+  
+    
+  .items
+    - @question.answers.each do |l|
+      .item
+        = l.content
+     
+  = form_for @answer, :url => { :action => "create" } do |f|
+    .field
+      %label.need 内容
+      %textarea{:name=>'answer[content]'}
+      
+    .field
+      %a.form-submit-button{:href=>'javascript:;'} 回答
