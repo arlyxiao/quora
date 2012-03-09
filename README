@@ -1,0 +1,14 @@
+Short message application
+
+Environment
+Ubuntu 11.10
+Rails 3.1.1
+ruby 1.9.3p6 (2011-12-20 revision 34080) [i686-linux] (This will have Chinese problem and need magic_encoding which can solve it)
+or 
+ruby 1.8.7 (2011-02-18 patchlevel 334) [i686-linux]
+gem version 1.8.11
+Bundler version 1.0.21
+
+Installation
+bundle install
+rake db:migrate

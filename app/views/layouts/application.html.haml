@@ -1,0 +1,29 @@
+-# MINDPIN 工程原型Layout
+
+:ruby
+  tstr = ((yield :title) || '').gsub("\n",'')
+  title = tstr.blank? ? "MINDPIN - 短消息 - 原型" : "#{tstr} - MINDPIN - 短消息 - 原型"
+
+!!! 5
+%html{:lang=>"zh"}
+  %head
+    %meta{:charset=>"utf-8"}
+    %title=title
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application'
+    = yield :css
+    = yield :head
+
+  %body.echo.gray
+    .page-wrap
+      .page-container
+        .page-header
+          .title=title
+          -if logged_in?
+            .current-user 欢迎你，#{current_user.name}
+            .logout=link_to '退出登录', '/logout'
+        .page-content
+          = yield
+
+    = javascript_include_tag 'application'
+    = yield :javascript

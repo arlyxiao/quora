@@ -1,0 +1,19 @@
+-htitle '用户登录'
+
+.page-login
+  %span=flash[:error]
+  =form_tag('/login',{:class=>'login-form'}) do
+    .field
+      %label 电子邮箱 / 用户名
+      =text_field_tag :email, params[:email]
+    .field
+      %label 密码
+      =password_field_tag :password, params[:password]
+    .field
+      %span=check_box_tag :remember_me, params[:remember_me], true
+      %span 下次记住我
+    .field
+      %a.form-submit-button{:href=>'javascript:;'} 登录
+
+.page-to-signup  
+  =link_to "注册一个新账号",'/signup'

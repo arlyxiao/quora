@@ -1,0 +1,25 @@
+.page-welcome.bold 欢迎你，#{current_user.name}
+
+.page-auth-intro
+  .title 关于如何在开发中使用用户验证的说明
+  .p
+    在 View 和 Controller 层，可以使用以下方法
+  .p
+    .bold current_user
+    获得当前登录的用户对象。如果没有登录，则返回 nil
+  .p
+    .bold logged_in?
+    判断当前是否是登录状态
+
+ 
+.page-to-votes
+  =link_to '去短消息列表','/short_messages'
+
+.page-users-list
+  -User.where(['id <> ?', current_user.id]).limit(10).each do |user|
+    .user
+      %span.name=user.name
+      %a.send-message{:href=>"/short_messages/new?receiver_id=#{user.id}"} 发短消息
+      
+.page-to-logout
+  =link_to "退出登录","/logout"

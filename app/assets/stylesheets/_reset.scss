@@ -1,0 +1,43 @@
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, dialog, figure, footer, header,
+hgroup, nav, section {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
+article,aside,dialog,figure,footer,header,hgroup, nav, section{display:block;}
+
+html{
+  overflow-x:hidden;
+  overflow-y:scroll;
+  -webkit-text-size-adjust:none;
+}
+
+body {line-height:1.5;}
+
+ins{text-decoration:none}
+del{text-decoration:line-through}
+
+table {border-collapse:separate;border-spacing:0;}
+caption, th, td {text-align:left;font-weight:normal;}
+table, td, th {vertical-align:middle;}
+
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}
+
+a img {border:none;}
+a em {font-family: "Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;}
+
+/*列表标签*/
+li ul, li ol{margin: 0;}
+ul, ol{margin:0;}
+
+ul{list-style-type:none;}
+ol{list-style-type:decimal;}
+
+dl{margin:0 0 1.5em 0;}
+dl dt{font-weight:bold;}
+dd{margin-left:1.5em;}
+
+textarea{resize: none;font-family: "Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;}

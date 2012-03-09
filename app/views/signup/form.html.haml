@@ -1,0 +1,24 @@
+-htitle '新用户注册'
+
+-submit_url = "/signup_submit"
+
+.page-signup
+  =flash[:error]
+  = form_for @user,:url=>submit_url do |f|
+    .field
+      %label 电子邮箱
+      = f.text_field :email,:maxlength=>50
+    .field
+      %label 用户名
+      = f.text_field :name,:maxlength=>50
+    .field
+      %label 密码
+      = f.password_field :password,:value=>'',:maxlength=>32
+    .field
+      %label 确认密码
+      = f.password_field :password_confirmation,:value=>'',:maxlength=>32
+    .field
+      %a.form-submit-button{:href=>'javascript:;'} 确认注册
+      
+.page-to-signup
+  %a{:href=>'/login'} 去登录页面
