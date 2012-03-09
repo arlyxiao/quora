@@ -22,7 +22,17 @@ class Answer < ActiveRecord::Base
     end
     
     module InstanceMethods
+      # 赞成
+      def agree(answer)
+        Answer.increment_counter(:vote_sum, answer.id)
+        AnswerVote.create(:user_id => self.id, :answer_id => answer.id, :is_vote_up => true)
+      end
       
+      # 反对
+      def disagree
+        Answer.decrement_counter(:vote_sum, answer.id)
+        AnswerVote.create(:user_id => self.id, :answer_id => answer.id, :is_vote_up => false)
+      end
     end
   end
 end
