@@ -14,11 +14,15 @@
   
     
   .items
-    - @question.answers.each do |l|
+    - @question.answers.each do |answer|
       .item
-        %span= l.creator.name
-        %span{:class => 'aaa'}= l.created_at
-        = l.content
+        %span= answer.creator.name
+        %span{:class => 'aaa'}= answer.created_at
+        = answer.content
+        %p
+          = link_to '赞成', agree_answers_path(answer), :remote => true
+          = link_to '反对', disagree_answers_path(answer), :remote => true
+
      
   = form_for @answer, :url => { :controller => 'answers', :action => 'create' } do |f|
     .field
