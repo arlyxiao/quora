@@ -40,4 +40,5 @@ class User < ActiveRecord::Base
   # ----------- 以下是方法扩充
   include OnlineRecord::UserMethods
   include Question::UserMethods
+  include Answer::UserMethods
 end

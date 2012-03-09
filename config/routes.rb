@@ -1,6 +1,12 @@
 Quora::Application.routes.draw do
-
-  resources :questions
+  resources :questions do
+    collection do
+      get :byme
+      get :answered
+    end
+  end
+  
+  resources :questions, :answers
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

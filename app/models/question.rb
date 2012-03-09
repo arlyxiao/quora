@@ -15,7 +15,24 @@ class Question < ActiveRecord::Base
     end
     
     module InstanceMethods
-      # nothing ...
+      # 用户提出的问题列表
+      def asked_questions
+        Question.find(
+          :all,
+          :conditions => {:creator_id => self.id},
+          :order => 'id DESC'
+        )
+      end
+      
+      # 用户回签的问题列表
+      def answered_questions
+        Answer.find(
+          :all,
+          :conditions => {:creator_id => self.id},
+          :group => 'question_id',
+          :order => 'id DESC'
+        ).map{x| x.question}
+      end
     end
   end
 end
