@@ -6,6 +6,11 @@ class Question < ActiveRecord::Base
   # --- 校验方法
   validates :creator, :title, :content, :presence => true
   
+  def is_answered_by(user)
+    return false if user.blank?
+    self.answers.where(:creator_id => user.id).exists?
+  end
+  
   # --- 给其他类扩展的方法
   module UserMethods
     def self.included(base)

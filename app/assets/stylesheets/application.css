@@ -505,7 +505,7 @@ body {
 .page-question-show .answers .answer {
   padding-left: 60px;
   overflow: hidden;
-  margin-bottom: 10px;
+  padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: solid 1px #ddd;
   min-height: 80px;
@@ -532,7 +532,17 @@ body {
       width: 20px;
       font-weight: bold;
       font-size: 16px;
-      text-align: center; }
+      text-align: center;
+      position: relative;
+      overflow: visible; }
+      .page-question-show .answers .answer .ops .sum .ani {
+        font-size: 24px;
+        font-weight: bold;
+        position: absolute;
+        font-family: tahoma,arial;
+        text-shadow: 0 0 2px white;
+        line-height: 30px;
+        height: 30px; }
     .page-question-show .answers .answer .ops .vote-up, .page-question-show .answers .answer .ops .vote-down {
       font-size: 0;
       line-height: 20em;

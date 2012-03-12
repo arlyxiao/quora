@@ -9,16 +9,17 @@ class AnswersController < ApplicationController
   end
   
   # 投赞成票, ajax返回
-  def agree
-    answer = Answer.find(params[:format])
-	  current_user.agree(answer)
-    render :text=>"success"
+  def vote_up
+    answer = Answer.find_by_id(params[:id])
+	  answer.vote_up_by!(current_user) if !answer.blank?
+    render :status=>200, :json => answer
   end
   
   # 投反对票, ajax返回
-  def disagree
-    current_user.disagree(params[:answer])
-    render :text=>"success"
+  def vote_down
+    answer = Answer.find_by_id(params[:id])
+    answer.vote_down_by!(current_user) if !answer.blank?
+    render :status=>200, :json => answer
   end
 
 end

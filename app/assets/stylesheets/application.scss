@@ -301,7 +301,7 @@ body{
     .answer{
       padding-left:60px;
       overflow:hidden;
-      margin-bottom:10px;
+      padding-top:10px;
       padding-bottom:10px;
       border-bottom:solid 1px #ddd;
       min-height:80px;
@@ -322,6 +322,16 @@ body{
           font-weight:bold;
           font-size:16px;
           text-align:center;
+          position:relative;
+          overflow:visible;
+          .ani{
+            font-size:24px;
+            font-weight:bold;
+            position:absolute;
+            font-family:tahoma,arial;
+            text-shadow:0 0 2px white;
+            line-height:30px;height:30px;
+          }
         }
         
         .vote-up, .vote-down{
