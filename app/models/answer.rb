@@ -7,6 +7,9 @@ class Answer < ActiveRecord::Base
   validates :creator, :question, :content, :presence => true
   validate :validate_limit_one_answer
   
+  # 引用其它类
+  include Comment::CommentableMethods
+  
   # 限制不能重复回答
   def validate_limit_one_answer
     has_existed = Answer.where(:creator_id => self.creator_id, :question_id => self.question_id).exists?

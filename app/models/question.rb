@@ -6,6 +6,9 @@ class Question < ActiveRecord::Base
   # --- 校验方法
   validates :creator, :title, :content, :presence => true
   
+  # 引用其它类
+  include Comment::CommentableMethods
+  
   # --- 给其他类扩展的方法
   module UserMethods
     def self.included(base)

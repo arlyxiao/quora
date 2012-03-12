@@ -1,7 +1,10 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require rails
 //= require_tree .
+
+
 
 
 jQuery(document).ready(function(){
@@ -9,4 +12,3 @@ jQuery(document).ready(function(){
     jQuery(this).closest('form').submit();
   })
 });
-

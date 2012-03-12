@@ -19,9 +19,30 @@
         %span= answer.creator.name
         %span{:class => 'aaa'}= answer.created_at
         = answer.content
-        %p
+        %p{:id => "agree-box#{answer.id}"}
           = link_to '赞成', agree_answers_path(answer), :remote => true
           = link_to '反对', disagree_answers_path(answer), :remote => true
+          
+          -answer.comments.each do |comment|
+            -if comment.reply_comment_id.blank?
+              %div
+                %span=comment.creator.name
+                %span ：
+                %span=comment.content
+                %span=link_to "回复","/answer_comments/#{comment.id}/reply"
+            -else
+              %div  
+                %span  #{comment.creator.name} 回复 #{comment.reply_user.name} : #{comment.content}
+                %span=link_to "回复","/answer_comments/#{comment.id}/reply"
+				
+		
+          =flash[:error]
+          =form_for answer.comments.build, :url=>"/answers/#{answer.id}/answer_comments" do |f|
+            %label 内容
+            %div
+              =f.text_area :content
+            %div
+              =f.submit "评论"
 
      
   = form_for @answer, :url => { :controller => 'answers', :action => 'create' } do |f|
