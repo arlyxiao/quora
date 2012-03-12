@@ -12,14 +12,7 @@
     判断当前是否是登录状态
 
  
-.page-to-votes
-  =link_to '去短消息列表','/short_messages'
-
-.page-users-list
-  -User.where(['id <> ?', current_user.id]).limit(10).each do |user|
-    .user
-      %span.name=user.name
-      %a.send-message{:href=>"/short_messages/new?receiver_id=#{user.id}"} 发短消息
+=render 'questions/parts/nav'
       
 .page-to-logout
   =link_to "退出登录","/logout"

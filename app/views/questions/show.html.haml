@@ -1,34 +1,46 @@
 -htitle '问题'
 
-
 .page-go-back
   =link_to '返回问题列表', '/questions'
-  
-.page-new-vote
-  = flash.now[:notice]
 
-.page-vote-show
-  .title= @question.title
-  %p= @question.content
+.page-question-show
+  :ruby
+    title = @question.title
+    content = @question.content
+    answers = @question.answers
+    creator = @question.creator
+    created_at = @question.created_at.localtime
   
+  .question
+    .title=title
+    .ct=content
+    .meta
+      .creator #{creator.name} 提问
+      .time=created_at
   
-    
-  .items
-    - @question.answers.each do |answer|
-      .item
-        %span= answer.creator.name
-        %span{:class => 'aaa'}= answer.created_at
-        = answer.content
-        %p
-          = link_to '赞成', agree_answers_path(answer), :remote => true
-          = link_to '反对', disagree_answers_path(answer), :remote => true
+  .answers
+    - answers.each do |answer|
+      :ruby
+        creator = answer.creator
+        created_at = answer.created_at.localtime
+        content = answer.content
+        
+      .answer
+        .ct=content
+        .meta
+          .creator=creator.name
+          .time=created_at
+        .ops
+          = link_to '赞成', agree_answers_path(answer), :remote => true, :class=>'vote-up'
+          .sum=answer.vote_sum
+          = link_to '反对', disagree_answers_path(answer), :remote => true, :class=>'vote-down'
 
-     
-  = form_for @answer, :url => { :controller => 'answers', :action => 'create' } do |f|
-    .field
-      = f.hidden_field :question_id, :value => @question.id
-      %label.need 内容
-      %textarea{:name=>'answer[content]'}
-      
-    .field
-      %a.form-submit-button{:href=>'javascript:;'} 回答
+  .answer-form
+    = form_for @answer, :url => { :controller => 'answers', :action => 'create' } do |f|
+      .field
+        = f.hidden_field :question_id, :value => @question.id
+        %label.need 我的回答
+        %textarea{:name=>'answer[content]'}
+        
+      .field
+        %a.form-submit-button{:href=>'javascript:;'} 回答

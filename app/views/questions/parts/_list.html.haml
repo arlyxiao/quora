@@ -1,0 +1,14 @@
+.page-questions
+  -questions.each do |question|
+    :ruby
+      creator = question.creator
+      answer_count = question.answers.count
+      created_at = question.created_at.localtime
+      title = question.title
+  
+    .question
+      .title=link_to title, question
+      .meta
+        .creator 由#{creator.name}提问
+        .answers-count #{answer_count}人回答
+        .time=created_at

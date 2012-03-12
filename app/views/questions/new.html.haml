@@ -3,7 +3,7 @@
 .page-go-back
   =link_to '返回问题列表', '/questions'
   
-  .page-new-vote
+.page-new-vote
   = flash.now[:error]
   
   = form_for @question, :url => { :action => "create" } do |f|
@@ -16,5 +16,5 @@
       %textarea{:name=>'question[content]'}
       
     .field
-      %a.form-submit-button{:href=>'javascript:;'} 开始提问
+      %a.form-submit-button{:href=>'javascript:;'} 确定提问
     

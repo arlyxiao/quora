@@ -377,18 +377,226 @@ body {
     margin-bottom: 10px;
     border-bottom: solid 1px #eee; }
 
-ul.page-list-exchanged-messages, ul.page-message-exchanged-users {
-  width: 400px; }
-  ul.page-list-exchanged-messages li.message, ul.page-message-exchanged-users li.message {
-    border: solid 1px #E6E6E6;
-    padding: 10px;
-    margin-bottom: 10px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px; }
-    ul.page-list-exchanged-messages li.message.to, ul.page-message-exchanged-users li.message.to {
-      background-color: #F3F3F3; }
-    ul.page-list-exchanged-messages li.message span.at, ul.page-message-exchanged-users li.message span.at {
-      color: #999; }
-    ul.page-list-exchanged-messages li.message span.text, ul.page-message-exchanged-users li.message span.text {
-      font-weight: bold; }
+.page-go-back {
+  line-height: 32px;
+  height: 32px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: solid 1px #eee; }
+
+.page-questions-nav {
+  overflow: hidden;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: solid 1px #eee; }
+  .page-questions-nav .item {
+    float: left;
+    height: 32px;
+    line-height: 32px;
+    margin-right: 5px;
+    font-size: 14px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background-color: #f4f4f4;
+    border: solid 1px #ddd;
+    padding: 0 8px; }
+    .page-questions-nav .item.at-here {
+      background-color: #222;
+      border-color: #333; }
+      .page-questions-nav .item.at-here a {
+        color: white !important; }
+
+.page-new-vote form .field {
+  margin-bottom: 10px; }
+  .page-new-vote form .field label {
+    display: block;
+    line-height: 20px;
+    height: 20px;
+    margin-bottom: 5px; }
+    .page-new-vote form .field label.need::after {
+      content: "*";
+      color: red;
+      padding-left: 5px; }
+  .page-new-vote form .field input[type=text], .page-new-vote form .field input[type=password] {
+    border: solid #CCCCCC 1px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    font-size: 12px;
+    line-height: 30px;
+    padding: 0 4px;
+    width: 200px;
+    height: 30px; }
+    .page-new-vote form .field input[type=text]:focus, .page-new-vote form .field input[type=password]:focus {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+      border: solid 1px rgba(82, 168, 236, 0.8); }
+  .page-new-vote form .field textarea {
+    border: solid #CCCCCC 1px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 4px;
+    width: 250px;
+    height: 100px; }
+    .page-new-vote form .field textarea:focus {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+      border: solid 1px rgba(82, 168, 236, 0.8); }
+  .page-new-vote form .field .form-submit-button {
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: -moz-linear-gradient(-90deg, #dd4b39, #c53727);
+    background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#dd4b39), to(#c53727));
+    border: 1px solid #b0281a;
+    color: white;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px;
+    display: block;
+    float: left; }
+    .page-new-vote form .field .form-submit-button:hover {
+      color: white;
+      background: -moz-linear-gradient(-90deg, #db3f2c, #b83324);
+      background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#db3f2c), to(#b83324));
+      border-color: #952216;
+      text-decoration: none; }
+
+.page-questions .question {
+  padding: 10px;
+  border-bottom: dashed 1px #ccc; }
+  .page-questions .question .title {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px; }
+  .page-questions .question .meta {
+    overflow: hidden; }
+    .page-questions .question .meta .creator, .page-questions .question .meta .answers-count, .page-questions .question .meta .time {
+      color: #999;
+      float: left;
+      margin-right: 10px; }
+
+.page-question-show .question {
+  padding-left: 60px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: solid 2px #ccc;
+  overflow: hidden; }
+  .page-question-show .question .title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px; }
+  .page-question-show .question .ct {
+    font-size: 14px; }
+  .page-question-show .question .meta {
+    float: right;
+    overflow: hidden; }
+    .page-question-show .question .meta .creator {
+      color: #999;
+      float: left;
+      margin-right: 10px; }
+    .page-question-show .question .meta .time {
+      color: #999;
+      float: left; }
+.page-question-show .answers .answer {
+  padding-left: 60px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #ddd;
+  min-height: 80px;
+  position: relative; }
+  .page-question-show .answers .answer .ct {
+    font-size: 14px; }
+  .page-question-show .answers .answer .meta {
+    float: right;
+    overflow: hidden; }
+    .page-question-show .answers .answer .meta .creator {
+      color: #999;
+      float: left;
+      margin-right: 10px; }
+    .page-question-show .answers .answer .meta .time {
+      color: #999;
+      float: left; }
+  .page-question-show .answers .answer .ops {
+    position: absolute;
+    left: 5px;
+    top: 5px; }
+    .page-question-show .answers .answer .ops .sum {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      width: 20px;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center; }
+    .page-question-show .answers .answer .ops .vote-up, .page-question-show .answers .answer .ops .vote-down {
+      font-size: 0;
+      line-height: 20em;
+      overflow: hidden;
+      display: block;
+      height: 20px;
+      width: 20px; }
+    .page-question-show .answers .answer .ops .vote-up::before {
+      content: '';
+      display: block;
+      border-bottom: solid 10px black;
+      border-left: solid 10px transparent;
+      border-right: solid 10px transparent;
+      border-top: solid 10px transparent; }
+    .page-question-show .answers .answer .ops .vote-down::before {
+      content: '';
+      display: block;
+      border-top: solid 10px black;
+      border-left: solid 10px transparent;
+      border-right: solid 10px transparent;
+      border-bottom: solid 10px transparent; }
+.page-question-show .answer-form {
+  padding-left: 60px; }
+  .page-question-show .answer-form .field {
+    margin-bottom: 10px; }
+    .page-question-show .answer-form .field label {
+      display: block;
+      line-height: 20px;
+      height: 20px;
+      margin-bottom: 5px; }
+      .page-question-show .answer-form .field label.need::after {
+        content: "*";
+        color: red;
+        padding-left: 5px; }
+    .page-question-show .answer-form .field textarea {
+      border: solid #CCCCCC 1px;
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+      font-size: 12px;
+      line-height: 20px;
+      padding: 4px;
+      width: 350px;
+      height: 100px; }
+      .page-question-show .answer-form .field textarea:focus {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+        border: solid 1px rgba(82, 168, 236, 0.8); }
+    .page-question-show .answer-form .field .form-submit-button {
+      -moz-border-radius: 2px;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      background: -moz-linear-gradient(-90deg, #dd4b39, #c53727);
+      background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#dd4b39), to(#c53727));
+      border: 1px solid #b0281a;
+      color: white;
+      height: 24px;
+      line-height: 24px;
+      padding: 0 10px;
+      display: block;
+      float: left; }
+      .page-question-show .answer-form .field .form-submit-button:hover {
+        color: white;
+        background: -moz-linear-gradient(-90deg, #db3f2c, #b83324);
+        background: -webkit-gradient(linear, 0% 0, 0% 100%, from(#db3f2c), to(#b83324));
+        border-color: #952216;
+        text-decoration: none; }
