@@ -12,11 +12,13 @@ class AnswersController < ApplicationController
   def agree
     answer = Answer.find(params[:format])
 	  current_user.agree(answer)
+    render :text=>"success"
   end
   
   # 投反对票, ajax返回
   def disagree
     current_user.disagree(params[:answer])
+    render :text=>"success"
   end
 
 end

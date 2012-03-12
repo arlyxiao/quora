@@ -5,18 +5,14 @@ class Answer < ActiveRecord::Base
   
   # --- 校验方法
   validates :creator, :question, :content, :presence => true
-  validate :validate_limit_one_answer
-  
-  # 限制不能重复回答
-  def validate_limit_one_answer
-    has_existed = Answer.where(:creator_id => self.creator_id, :question_id => self.question_id).exists?
-    errors.add(:base, '不能重复回答') if has_existed
-  end
+  # --- 限制不能重复回答
+  validates :question_id, :uniqueness=>{:scope => :creator_id} 
   
   # --- 给其他类扩展的方法
   module UserMethods
     def self.included(base)
       base.has_many :answers, :foreign_key => :creator_id
+      base.has_many :answered_questions, :through => :answers, :source => :question
       
       base.send(:include, InstanceMethods)
     end
