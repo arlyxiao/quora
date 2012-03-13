@@ -18,6 +18,23 @@
           transition : $params;
 }
 
+@mixin submit-button{
+  @include border-radius(2px);
+  @include gradient(#dd4b39, #c53727);
+  border:1px solid #b0281a;
+  color:white;
+  height:24px;line-height:24px;
+  padding:0 10px;
+  display:block;float:left;
+    
+  &:hover{
+    color:white;
+    @include gradient(darken(#dd4b39, 3%), darken(#c53727, 3%));
+    border-color:darken(#b0281a, 6%);
+    text-decoration:none;
+  };
+}
+
 // -----------------------------------------------
 
 body{
@@ -154,23 +171,267 @@ body{
   }
 }
 
+.page-go-back{
+  line-height:32px;height:32px;
+  padding-bottom:10px;margin-bottom:10px;
+  border-bottom:solid 1px #eee;
+}
+
 ///////////////////////////////////////////
 
-ul.page-list-exchanged-messages{
-  width:400px;
-  li.message{
-    border:solid 1px #E6E6E6;
-    padding:10px;
-    margin-bottom:10px;
-    @include border-radius(3px);
+.page-questions-nav{
+  overflow:hidden;
+  padding-bottom:10px;
+  margin-bottom:10px;
+  border-bottom:solid 1px #eee;
+  .item{
+    float:left;height:32px;line-height:32px;
+    margin-right:5px;
+    font-size:14px;
+    @include border-radius(2px);
+    background-color:#f4f4f4;
+    border:solid 1px #ddd;
+    padding:0 8px;
     
-    &.to{background-color:#F3F3F3;}
-    
-    span.at{color:#999;}
-    span.text{font-weight:bold;}
+    &.at-here{
+      background-color:#222;
+      border-color:#333;
+      a{color:white !important;}
+    }
   }
 }
 
-ul.page-message-exchanged-users{
-  @extend ul.page-list-exchanged-messages;
+.page-new-vote{
+  form{
+    .field{
+      margin-bottom:10px;
+      
+      label{
+        display:block;line-height:20px;height:20px;margin-bottom:5px;
+        &.need{
+          &::after{
+            content:"*";
+            color:red;
+            padding-left:5px;
+          };
+        }
+      }
+      
+      input[type=text], input[type=password]{
+        border:solid #CCCCCC 1px;
+        @include border-radius(2px);
+        box-shadow:0 1px 2px rgba(0, 0, 0, 0.1) inset;
+        font-size:12px;line-height:30px;padding:0 4px;
+        width:200px;height:30px;
+        &:focus{
+          box-shadow:0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+          border:solid 1px rgba(82, 168, 236, 0.8);
+        }
+      }
+      
+      textarea{
+        border:solid #CCCCCC 1px;
+        @include border-radius(2px);
+        box-shadow:0 1px 2px rgba(0, 0, 0, 0.1) inset;
+        font-size:12px;line-height:20px;padding:4px;
+        width:250px;height:100px;
+        &:focus{
+          box-shadow:0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+          border:solid 1px rgba(82, 168, 236, 0.8);
+        }
+      }
+      
+      .form-submit-button{@include submit-button;}
+    }
+  }  
+}
+
+.page-questions{
+  .question{
+    padding:10px;
+    border-bottom:dashed 1px #ccc;
+    
+    .title{
+      font-size:14px;font-weight:bold;
+      line-height:20px;
+    }
+    
+    .meta{
+      overflow:hidden;
+      .creator, .answers-count, .time{
+        color:#999;
+        float:left;margin-right:10px;
+      }
+    }
+  }
+}
+
+@mixin quora-meta{
+  float:right;
+  overflow:hidden;
+  .creator{
+    color:#999;
+    float:left;
+    margin-right:10px;
+  }
+  .time{
+    color:#999;
+    float:left;
+  }
+}
+
+@mixin common-comments{
+  clear:both;
+  margin-top:30px;
+  font-size:12px;
+  .comment{
+    border-top:dashed 1px #ddd;
+    line-height:20px;
+    padding:5px 8px;
+    font-size:12px;
+    color:#666;
+    background-color:#fafafa;
+  }
+  
+  .form{
+    margin-top:10px;
+    label{
+      display:block;
+    }
+    textarea{
+      border:solid #CCCCCC 1px;
+      @include border-radius(2px);
+      box-shadow:0 1px 2px rgba(0, 0, 0, 0.1) inset;
+      font-size:12px;line-height:20px;padding:4px;
+      width:300px;height:80px;
+      &:focus{
+        box-shadow:0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+        border:solid 1px rgba(82, 168, 236, 0.8);
+      }
+    }
+    .form-submit-button{@include submit-button;}
+  }
+}
+
+.page-question-show{
+  .question{
+    padding-left:60px;
+    padding-bottom:10px;
+    margin-bottom:10px;
+    border-bottom:solid 2px #ccc;
+    overflow:hidden;
+    .title{
+      font-size:16px;font-weight:bold;
+      margin-bottom:10px;
+    }
+    .ct{font-size:14px;}
+    .meta{
+      @include quora-meta;
+    }
+    .comments{@include common-comments;}
+  }
+  
+  .answers{
+    .answer{
+      padding-left:60px;
+      overflow:hidden;
+      padding-top:10px;
+      padding-bottom:10px;
+      border-bottom:solid 1px #ddd;
+      min-height:80px;
+      position:relative;
+      .ct{font-size:14px;}
+      .meta{
+        @include quora-meta;
+      }
+      .ops{
+        position:absolute;
+        left:5px;
+        top:5px;
+        
+        .sum{
+          margin-top:5px;
+          margin-bottom:5px;
+          width:20px;
+          font-weight:bold;
+          font-size:16px;
+          text-align:center;
+          position:relative;
+          overflow:visible;
+          .ani{
+            font-size:24px;
+            font-weight:bold;
+            position:absolute;
+            font-family:tahoma,arial;
+            text-shadow:0 0 2px white;
+            line-height:30px;height:30px;
+          }
+        }
+        
+        .vote-up, .vote-down{
+          font-size:0;
+          line-height:20em;
+          overflow:hidden;
+          display:block;
+          height:20px;width:20px;
+        }
+        
+        $border-width:10px;
+        
+        .vote-up{
+          &::before{
+            content:'';
+            display:block;
+            border-bottom:solid $border-width black;
+            border-left:solid $border-width transparent;
+            border-right:solid $border-width transparent;
+            border-top:solid $border-width transparent;
+          };
+        }
+        .vote-down{
+          &::before{
+            content:'';
+            display:block;
+            border-top:solid $border-width black;
+            border-left:solid $border-width transparent;
+            border-right:solid $border-width transparent;
+            border-bottom:solid $border-width transparent;
+          };
+        }
+      }
+      .comments{@include common-comments;}
+    }
+  }
+  
+  .answer-form{
+    padding-left:60px;
+    .field{
+      margin-bottom:10px;
+      
+      label{
+        display:block;line-height:20px;height:20px;margin-bottom:5px;
+        &.need{
+          &::after{
+            content:"*";
+            color:red;
+            padding-left:5px;
+          };
+        }
+      }
+      
+      textarea{
+        border:solid #CCCCCC 1px;
+        @include border-radius(2px);
+        box-shadow:0 1px 2px rgba(0, 0, 0, 0.1) inset;
+        font-size:12px;line-height:20px;padding:4px;
+        width:350px;height:100px;
+        &:focus{
+          box-shadow:0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 0 8px rgba(82, 168, 236, 0.6);
+          border:solid 1px rgba(82, 168, 236, 0.8);
+        }
+      }
+      
+      .form-submit-button{@include submit-button;}
+    }
+  }
 }
