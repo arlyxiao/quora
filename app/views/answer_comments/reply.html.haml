@@ -1,0 +1,10 @@
+%div		
+  ="回复 #{@comment.content}"
+  
+=flash[:error]
+=form_for Comment.new, :url=>"/answer_comments/#{@comment.id}/do_reply" do |f|
+  %label 内容
+  %div
+    =f.text_area :content
+  %div
+    =f.submit "回复"

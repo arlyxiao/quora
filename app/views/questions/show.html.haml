@@ -19,6 +19,7 @@
     .meta
       .creator #{creator.name} 提问
       .time=created_at
+    =render 'questions/parts/question_comments', :comments => @question.comments
   
   .answers
     - answers.each do |answer|
@@ -36,6 +37,9 @@
           %a.vote-up{:href=>'javascript:;'} 赞成
           .sum=answer.vote_sum || 0
           %a.vote-down{:href=>'javascript:;'} 反对
+          
+        =render 'questions/parts/answer_comments', :comments => answer.comments
+
 
   -if !answered
     .answer-form

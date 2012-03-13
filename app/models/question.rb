@@ -19,4 +19,8 @@ class Question < ActiveRecord::Base
         :foreign_key => :creator_id, :order=>'id DESC'
     end
   end
+
+  # 引用其它类
+  include Comment::CommentableMethods
+
 end

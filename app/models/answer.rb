@@ -34,5 +34,8 @@ class Answer < ActiveRecord::Base
       base.has_many :answered_questions, :through => :answers, :source => :question
     end
   end
-  
+
+  # 引用其它类
+  include Comment::CommentableMethods  
+
 end

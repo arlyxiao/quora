@@ -11,8 +11,13 @@
     %title=title
     = csrf_meta_tags
     = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+
+    = yield :javascript
     = yield :css
     = yield :head
+
+
 
   %body.echo.gray
     .page-wrap
@@ -25,5 +30,5 @@
         .page-content
           = yield
 
-    = javascript_include_tag 'application'
-    = yield :javascript
+
+
