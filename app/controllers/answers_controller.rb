@@ -1,5 +1,4 @@
 class AnswersController < ApplicationController
-  respond_to :js, :json, :html, :xml
   def create
     @answer = current_user.answers.build(params[:answer])
     return redirect_to question_path(@answer.question) if @answer.save
@@ -10,20 +9,17 @@ class AnswersController < ApplicationController
   end
   
   # 投赞成票, ajax返回
-  def agree
-    @answer = Answer.find(params[:format])
-		current_user.agree(@answer)
-
-	  #respond_to do |format|
-    #  format.js { render :content_type => 'text/javascript'  }
-    #end
-
+  def vote_up
+    answer = Answer.find_by_id(params[:id])
+	  answer.vote_up_by!(current_user) if !answer.blank?
+    render :status=>200, :json => answer
   end
   
   # 投反对票, ajax返回
-  def disagree
-    answer = Answer.find(params[:format])
-	  current_user.disagree(answer)
+  def vote_down
+    answer = Answer.find_by_id(params[:id])
+    answer.vote_down_by!(current_user) if !answer.blank?
+    render :status=>200, :json => answer
   end
 
 end

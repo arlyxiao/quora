@@ -1,0 +1,5 @@
+.page-questions-nav
+  .item{:class=>current_page?('/questions/new') ? 'at-here':''}=link_to '提出新问题', '/questions/new'
+  .item{:class=>current_page?('/questions') ? 'at-here':''}=link_to '所有问题', '/questions'
+  .item{:class=>current_page?('/questions/byme') ? 'at-here':''}=link_to '我提出的问题', '/questions/byme'
+  .item{:class=>current_page?('/questions/answered') ? 'at-here':''}=link_to '我回答过的问题', '/questions/answered'
