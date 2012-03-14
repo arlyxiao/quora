@@ -22,8 +22,8 @@
       %div
         %span  #{comment.creator.name} 回复 #{comment.reply_user.name} : #{comment.content}
         %span=link_to "回复","/question_comments/#{comment.id}/reply"
-
-
+        
+        
     =flash[:error]
     =form_for q.comments.build, :url=>"/questions/#{q.id}/question_comments" do |f|
       %label 内容
