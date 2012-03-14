@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   end
   
   def create
-    @question = current_user.questions.build(params[:question])
+    @question = current_user.asked_questions.build(params[:question])
     return redirect_to @question if @question.save
 
     error = @question.errors.first

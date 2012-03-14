@@ -1,55 +1,55 @@
 -htitle '问题'
 
-
 .page-go-back
   =link_to '返回问题列表', '/questions'
-  
-.page-new-vote
-  = flash.now[:notice]
 
-.page-vote-show
-  .title= @question.title
-  %p= @question.content
+.page-question-show
+  :ruby
+    title = @question.title
+    content = @question.content
+    answers = @question.answers
+    creator = @question.creator
+    created_at = @question.created_at.localtime
   
+    answered = @question.is_answered_by(current_user)
   
-    
-  .items
-    - @question.answers.each do |answer|
-      .item
-        %span= answer.creator.name
-        %span{:class => 'aaa'}= answer.created_at
-        = answer.content
-        %p{:id => "agree-box#{answer.id}"}
-          = link_to '赞成', agree_answers_path(answer), :remote => true
-          = link_to '反对', disagree_answers_path(answer), :remote => true
+  .question
+    .title=title
+    .ct=content
+    .meta
+      .creator #{creator.name} 提问
+      .time=created_at
+    =render 'questions/parts/question_comments', :comments => @question.comments
+  
+  .answers
+    - answers.each do |answer|
+      :ruby
+        creator = answer.creator
+        created_at = answer.created_at.localtime
+        content = answer.content
+        
+      .answer{:'data-id'=>answer.id}
+        .ct=content
+        .meta
+          .creator=creator.name
+          .time=created_at
+        .ops
+          %a.vote-up{:href=>'javascript:;'} 赞成
+          .sum=answer.vote_sum || 0
+          %a.vote-down{:href=>'javascript:;'} 反对
           
-          -answer.comments.each do |comment|
-            -if comment.reply_comment_id.blank?
-              %div
-                %span=comment.creator.name
-                %span ：
-                %span=comment.content
-                %span=link_to "回复","/answer_comments/#{comment.id}/reply"
-            -else
-              %div  
-                %span  #{comment.creator.name} 回复 #{comment.reply_user.name} : #{comment.content}
-                %span=link_to "回复","/answer_comments/#{comment.id}/reply"
-				
-		
-          =flash[:error]
-          =form_for answer.comments.build, :url=>"/answers/#{answer.id}/answer_comments" do |f|
-            %label 内容
-            %div
-              =f.text_area :content
-            %div
-              =f.submit "评论"
+        =render 'questions/parts/answer_comments', :comments => answer.comments
 
-     
-  = form_for @answer, :url => { :controller => 'answers', :action => 'create' } do |f|
-    .field
-      = f.hidden_field :question_id, :value => @question.id
-      %label.need 内容
-      %textarea{:name=>'answer[content]'}
-      
-    .field
-      %a.form-submit-button{:href=>'javascript:;'} 回答
+
+  -if !answered
+    .answer-form
+      = form_for @answer, :url => { :controller => 'answers', :action => 'create' } do |f|
+        .field
+          = f.hidden_field :question_id, :value => @question.id
+          %label.need 我的回答
+          %textarea{:name=>'answer[content]'}
+          
+        .field
+          %a.form-submit-button{:href=>'javascript:;'} 回答
+  -else
+    .answered 我已经回答过这个问题了
