@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120312070736) do
+ActiveRecord::Schema.define(:version => 20120314062931) do
 
   create_table "answer_votes", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,17 @@ ActiveRecord::Schema.define(:version => 20120312070736) do
     t.text     "content"
     t.integer  "reply_comment_id"
     t.integer  "reply_comment_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.boolean  "is_read",       :default => false
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.integer  "creator_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
