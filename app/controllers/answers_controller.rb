@@ -2,12 +2,6 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.build(params[:answer])
     if @answer.save
-      Notification.create(
-        :user_id => @answer.question.creator_id,
-        :resource_type => "be_answered",
-        :resource_id => @answer.id,
-        :creator_id => @answer.creator_id
-      )
       return redirect_to question_path(@answer.question)
     end
         
