@@ -15,6 +15,12 @@
   
   .question
     .title=title
+    - @question.tags.each do |tag|
+      %div
+        %span=tag.name
+        =link_to "删除","/questions/#{@question.id}/remove_tag?tag_name=#{tag.name}",:method=>:delete
+    %div
+      =link_to "增加标签","/questions/#{@question.id}/add_tag"
     .ct=content
     .meta
       .creator #{creator.name} 提问

@@ -30,5 +30,23 @@ class QuestionsController < ApplicationController
   def answered
     @questions = current_user.answered_questions
   end
+  
+  def add_tag
+    @question = Question.find(params[:id])
+  end
+  
+  # 添加标签
+  def do_add_tag
+    @question = Question.find(params[:id])
+    @question.add_tag(current_user,params[:name])
+    redirect_to @question
+  end
+  
+  # 删除标签
+  def remove_tag
+    @question = Question.find(params[:id])
+    @question.remove_tag(params[:tag_name])
+    redirect_to @question
+  end
 
 end

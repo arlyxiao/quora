@@ -22,5 +22,5 @@ class Question < ActiveRecord::Base
 
   # 引用其它类
   include Comment::CommentableMethods
-
+  include Tagging::TaggableMethods
 end

@@ -5,6 +5,12 @@ Quora::Application.routes.draw do
       get :answered
     end
     
+    member do
+      get :add_tag
+      post :do_add_tag
+      delete :remove_tag
+    end
+    
     resources :question_comments
   end
   
